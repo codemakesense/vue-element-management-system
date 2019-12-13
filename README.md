@@ -1,24 +1,7 @@
-# vue_proj_shop_admin
+# vue-element-management-system
 
-## Project setup
-```
-npm install
-```
+基于Vue框架和Element ui框架开发的后台管理系统
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# 2019/12/13
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+第一次提交，完成了登录页面逻辑
