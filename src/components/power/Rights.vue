@@ -9,7 +9,7 @@
     <!-- 卡片视图区 -->
     <el-card>
       <!-- 权限列表区 -->
-      <el-table border :data="dataShow" stripe>
+      <el-table border :data="currentPageList" stripe>
         <el-table-column type="index" label="序列" width="100"></el-table-column>
         <el-table-column label="权限名称" prop="authName"></el-table-column>
         <el-table-column label="路径" prop="path"></el-table-column>
@@ -55,7 +55,7 @@ export default {
       // 一共几页
       pageNum: 1,
       // 当前页展示的数据
-      dataShow: [],
+      currentPageList: [],
       // 当前页码
       currentPage: 1
     }
@@ -118,19 +118,20 @@ export default {
         )
       }
       // 根据当前页码决定需要展示的内容
-      this.dataShow = this.totalPage[this.currentPage - 1]
+      this.currentPageList = this.totalPage[this.currentPage - 1]
     },
     // 监听 pagesize 改变事件
     handleSizeChange(newSize) {
       // console.log(newsize)
       this.pageSize = newSize
+      this.currentPage = 1
       this.setPageList()
     },
     // 监听 页码值 改变事件
     handleCurrentChange(newPage) {
       // console.log(newpage)
       this.currentPage = newPage
-      this.dataShow = this.totalPage[newPage - 1]
+      this.currentPageList = this.totalPage[newPage - 1]
     }
   }
 }

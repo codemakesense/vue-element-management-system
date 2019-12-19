@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>welcome</h1>
+    <h1>Welcome</h1>
     <h3>coding by Simon Lv</h3>
     <h3>Enjoy yourself！</h3>
   </div>
