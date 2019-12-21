@@ -34,6 +34,7 @@
         index-text="序列"
         border
         class="tree-table"
+        :show-row-hover="false"
       >
         <!-- 是否有效列 -->
         <template slot="isok" slot-scope="scope">

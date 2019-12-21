@@ -8,16 +8,18 @@ module.exports = {
     '@vue/standard'
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // 函数名和括号间需要的空格数
+    'no-console': 'off',
+    'no-debugger': 'off',
     'space-before-function-paren': 0,
-    'no-unused-vars': [2, {
-      // 允许声明未使用变量
-      'vars': 'local',
-      // 参数不检查
-      'args': 'none'
-    }]
+    'no-unused-vars': [
+      2,
+      {
+        vars: 'local',
+        args: 'none'
+      }
+    ],
+    'vue/no-unused-vars': 'warning',
+    'no-useless-return': "off"
   },
   parserOptions: {
     parser: 'babel-eslint'
