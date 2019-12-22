@@ -20,6 +20,7 @@ import TreeTable from 'vue-table-with-tree-grid'
 import axios from 'axios'
 // 配置请求根路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// 设置 axios 拦截器
 axios.interceptors.request.use(config => {
   // console.log(config)
   config.headers.Authorization = window.sessionStorage.getItem('token')
@@ -30,10 +31,13 @@ Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
+// 注册 tree-table 组件
 Vue.component('tree-table', TreeTable)
+
 // 将富文本编辑器注册为全局可用的组件
 Vue.use(VueQuillEditor)
 
+// 定义日期过滤器
 Vue.filter('dateFormat', function (originVal) {
   const dt = new Date(originVal)
   const y = dt.getFullYear()
@@ -47,6 +51,7 @@ Vue.filter('dateFormat', function (originVal) {
   return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
 
+// 渲染Vue app 应用
 new Vue({
   router,
   render: h => h(App)
