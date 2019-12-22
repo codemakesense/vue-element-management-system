@@ -30,3 +30,28 @@ body,
 .el-cascader-panel {
   height: 200px;
 }
+
+/* 解决element-ui的table表格控件表头与内容列不对齐问题 */
+.el-table th.gutter {
+  display: table-cell !important;
+}
+
+div.zk-table__body-wrapper {
+  overflow: hidden;
+}
+
+.el-steps {
+  margin: 15px 0;
+}
+
+div.el-step__title {
+  font-size: 15px;
+}
+/* 
+div.el-tabs {
+  margin-top: 30px;
+} */
+
+.ql-editor{
+  min-height: 300px;
+}
