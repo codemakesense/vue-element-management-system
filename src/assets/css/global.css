@@ -19,7 +19,6 @@ body,
 }
 
 .el-table {
-  margin-top: 15px;
   font-size: 12px;
 }
 
@@ -47,11 +46,12 @@ div.zk-table__body-wrapper {
 div.el-step__title {
   font-size: 15px;
 }
+
 /* 
 div.el-tabs {
   margin-top: 30px;
 } */
 
-.ql-editor{
+.ql-editor {
   min-height: 300px;
 }

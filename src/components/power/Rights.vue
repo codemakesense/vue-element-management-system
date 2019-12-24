@@ -9,8 +9,8 @@
     <!-- 卡片视图区 -->
     <el-card>
       <!-- 权限列表区 -->
-      <el-table border :data="currentPageList" stripe>
-        <el-table-column type="index" label="序列" width="100"></el-table-column>
+      <el-table :data="currentPageList" border stripe>
+        <el-table-column type="index" label="#" width="50"></el-table-column>
         <el-table-column label="权限名称" prop="authName"></el-table-column>
         <el-table-column label="路径" prop="path"></el-table-column>
         <el-table-column label="权限等级" prop="level">
@@ -66,9 +66,7 @@ export default {
   methods: {
     // 通过 http 请求获取权限列表
     async getRightsList() {
-      const { data: res } = await this.$http.get(
-        'rights/' + this.queryInfo.type
-      )
+      const { data: res } = await this.$http.get('rights/' + this.queryInfo.type)
       if (res.meta.status !== 200) {
         return this.$message.error('获取权限列表失败')
       }
@@ -112,10 +110,7 @@ export default {
       this.pageNum = Math.ceil(this.rightsList.length / this.pageSize) || 1
       // for 循环将后台请求的数组按页码分组保存到新的数组 totalPage 中
       for (let i = 0; i < this.pageNum; i++) {
-        this.totalPage[i] = this.rightsList.slice(
-          this.pageSize * i,
-          this.pageSize * (i + 1)
-        )
+        this.totalPage[i] = this.rightsList.slice(this.pageSize * i, this.pageSize * (i + 1))
       }
       // 根据当前页码决定需要展示的内容
       this.currentPageList = this.totalPage[this.currentPage - 1]
@@ -137,4 +132,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+
 </style>

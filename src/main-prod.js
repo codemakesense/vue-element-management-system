@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router.js'
-// 按需导入Element-ui
+// 按需导入 Element-ui
 // import './plugins/element.js'
 // 导入字体图标样式表
 import './assets/fonts/iconfont.css'

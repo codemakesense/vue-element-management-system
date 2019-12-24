@@ -134,4 +134,7 @@ export default {
 .gutter {
   border: 0;
 }
+.el-table {
+  margin-top: 15px;
+}
 </style>

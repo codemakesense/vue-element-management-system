@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router.js'
-// 按需导入Element-ui
-// import './plugins/element.js'
+import './plugins/element.js'
 // 导入字体图标样式表
 import './assets/fonts/iconfont.css'
 // 导入全局样式表
@@ -10,16 +9,16 @@ import './assets/css/global.css'
 // 导入富文本编辑器
 import VueQuillEditor from 'vue-quill-editor'
 // require styles 导入富文本编辑器对应的样式
-// import 'quill/dist/quill.core.css'
-// import 'quill/dist/quill.snow.css'
-// import 'quill/dist/quill.bubble.css'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 // 导入 TreeTable 插件
 import TreeTable from 'vue-table-with-tree-grid'
 
 // 导入 NProgress 对应的JS和CSS
 import NProgress from 'nprogress'
-// import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css'
 
 // 导入axios第三方库
 import axios from 'axios'

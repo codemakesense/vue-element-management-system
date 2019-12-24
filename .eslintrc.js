@@ -19,7 +19,7 @@ module.exports = {
       }
     ],
     'vue/no-unused-vars': 'warning',
-    'no-useless-return': "off"
+    'no-useless-return': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint'
