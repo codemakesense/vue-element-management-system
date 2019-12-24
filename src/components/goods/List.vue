@@ -25,7 +25,8 @@
         <el-table-column type="index" label="#" width="50"></el-table-column>
         <el-table-column prop="goods_name" label="商品名称"></el-table-column>
         <el-table-column prop="goods_price" label="商品价格（元）" width="120"></el-table-column>
-        <el-table-column prop="goods_weight" label="商品重量" width="120"></el-table-column>
+        <el-table-column prop="goods_weight" label="商品重量" width="100"></el-table-column>
+        <el-table-column prop="goods_number" label="商品数量" width="100"></el-table-column>
         <el-table-column prop="add_time" label="创建时间" width="150">
           <template v-slot="scope">{{ scope.row.add_time | dateFormat}}</template>
         </el-table-column>
@@ -33,7 +34,12 @@
         <el-table-column label="操作" width="120">
           <template v-slot="scope">
             <!-- 编辑按钮 -->
-            <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              size="mini"
+              @click="showEditDialog(scope.row.goods_id)"
+            ></el-button>
             <!-- 删除按钮 -->
             <el-button
               type="danger"
@@ -55,6 +61,32 @@
         :total="total"
       ></el-pagination>
     </el-card>
+    <!-- 编辑对话框区域 -->
+    <el-dialog title="编辑商品" :visible.sync="editDialogVisible" width="50%">
+      <el-form
+        :model="editGoodsForm"
+        :rules="editGoodsRules"
+        ref="editGoodsFormRef"
+        label-width="100px"
+      >
+        <el-form-item label="商品名称" prop="goods_name">
+          <el-input v-model="editGoodsForm.goods_name"></el-input>
+        </el-form-item>
+        <el-form-item label="商品价格" prop="goods_price">
+          <el-input v-model="editGoodsForm.goods_price"></el-input>
+        </el-form-item>
+        <el-form-item label="商品重量" prop="goods_weight">
+          <el-input v-model="editGoodsForm.goods_weight"></el-input>
+        </el-form-item>
+        <el-form-item label="商品数量" prop="goods_number">
+          <el-input v-model="editGoodsForm.goods_number"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="editDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editGoods">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -72,7 +104,32 @@ export default {
         pagesize: 10
       },
       // 所有的数据项
-      total: 1
+      total: 1,
+      // 控制编辑对话框的显示
+      editDialogVisible: false,
+      // 编辑商品表单对象
+      editGoodsForm: {
+        goods_name: '',
+        goods_price: 0,
+        goods_weight: 0,
+        goods_number: 0
+      },
+      // 编辑商品表单验证对象
+      editGoodsRules: {
+        goods_name: [
+          { required: true, message: '请输入商品名称', trigger: 'blur' }
+        ],
+        goods_price: [
+          { required: true, message: '请输入商品价格', trigger: 'blur' }
+        ],
+        goods_weight: [
+          { required: true, message: '请输入商品重量', trigger: 'blur' }
+        ],
+        goods_number: [
+          { required: true, message: '请输入商品数量', trigger: 'blur' }
+        ]
+      },
+      goodsId: 0
     }
   },
   created() {
@@ -124,6 +181,29 @@ export default {
     // 点击按钮跳转到添加商品页面
     goAddPage() {
       this.$router.push('/goods/add')
+    },
+    // 点击展示编辑商品对话框
+    async showEditDialog(id) {
+      const { data: res } = await this.$http.get(`goods/${id}`)
+      if (res.meta.status !== 200) {
+        return this.$message.error('获取商品数据失败')
+      }
+      this.editGoodsForm = res.data
+      this.editDialogVisible = true
+      this.goodsId = id
+    },
+    // 点击确认提交编辑后的商品信息
+    async editGoods() {
+      const { data: res } = await this.$http.put(
+        `goods/${this.goodsId}`,
+        this.editGoodsForm
+      )
+      if (res.meta.status !== 200) {
+        return this.$message.error('修改商品信息失败！')
+      }
+      this.getGoodsList()
+      this.editDialogVisible = false
+      this.$message.success('修改商品信息成功！')
     }
   }
 }
