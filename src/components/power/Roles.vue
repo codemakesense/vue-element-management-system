@@ -107,7 +107,7 @@
     </el-dialog>
     <!-- 分配权限的对话框 -->
     <el-dialog
-      title="提示"
+      title="分配权限"
       :visible.sync="setRightDialogVisible"
       width="50%"
       @close="setRightDialogClosed"
@@ -147,9 +147,7 @@ export default {
       },
       // 添加角色的表单验证对象
       addRoleRules: {
-        roleName: [
-          { required: true, message: '请输入角色名称', trigger: 'blur' }
-        ]
+        roleName: [{ required: true, message: '请输入角色名称', trigger: 'blur' }]
       },
       // 控制分配权限对话框的显示与隐藏
       setRightDialogVisible: false,
@@ -191,9 +189,7 @@ export default {
       if (confirmResult !== 'confirm') {
         return this.$message('取消了删除')
       }
-      const { data: res } = await this.$http.delete(
-        `roles/${role.id}/rights/${rightId}`
-      )
+      const { data: res } = await this.$http.delete(`roles/${role.id}/rights/${rightId}`)
       if (res.meta.status !== 200) {
         return this.$message.error('删除权限失败')
       }
@@ -211,8 +207,10 @@ export default {
       }
       // 把获取到的权限数据保存到 data 中
       this.rightsList = res.data
+      console.log(this.rightsList)
       //  递归获取三级节点的 ID
       this.getLeafKeys(role, this.defKeys)
+      console.log(this.defKeys)
       this.setRightDialogVisible = true
     },
     // 通过递归的形式，获取所有角色下三级权限的ID，并保存到 defKeys 数组中
@@ -230,16 +228,11 @@ export default {
     // 点击为角色分配权限
     async allotRights() {
       // 将准备 post 给后台的权限分配ID保存到 keys中
-      const keys = [
-        ...this.$refs.treeRef.getCheckedKeys(),
-        ...this.$refs.treeRef.getHalfCheckedKeys()
-      ]
+      const keys = [...this.$refs.treeRef.getCheckedKeys(), ...this.$refs.treeRef.getHalfCheckedKeys()]
       // 为 keys 以 字符串 ',' 分隔
       const idStr = keys.join(',')
-      const { data: res } = await this.$http.post(
-        `roles/${this.roleId}/rights`,
-        { rids: idStr }
-      )
+      console.log(idStr)
+      const { data: res } = await this.$http.post(`roles/${this.roleId}/rights`, { rids: idStr })
       if (res.meta.status !== 200) {
         return this.$message.error('分配权限失败！')
       }
@@ -325,7 +318,7 @@ export default {
   display: flex;
   align-items: center;
 }
-.el-table{
+.el-table {
   margin-top: 15px;
 }
 </style>

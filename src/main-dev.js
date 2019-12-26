@@ -20,6 +20,9 @@ import TreeTable from 'vue-table-with-tree-grid'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+// 导入动态背景
+import VuePraticles from 'vue-particles'
+
 // 导入axios第三方库
 import axios from 'axios'
 // 配置请求根路径
@@ -50,6 +53,7 @@ Vue.component('tree-table', TreeTable)
 
 // 将富文本编辑器注册为全局可用的组件
 Vue.use(VueQuillEditor)
+Vue.use(VuePraticles)
 
 // 定义日期过滤器
 Vue.filter('dateFormat', function (originVal) {

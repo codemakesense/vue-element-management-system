@@ -28,7 +28,7 @@ const Report = () => import(/* webpackChunkName:"report" */ '../components/repor
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     { path: '/', redirect: '/Login' },
     { path: '/login', component: Login },

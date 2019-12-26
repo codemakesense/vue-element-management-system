@@ -1,28 +1,54 @@
 <template>
   <div class="login-container">
+    <vue-particles
+      class="active-bgd"
+      color="#fff"
+      :particleOpacity="0.7"
+      :particlesNumber="60"
+      shapeType="circle"
+      :particleSize="4"
+      linesColor="#fff"
+      :linesWidth="1"
+      :lineLinked="true"
+      :lineOpacity="0.4"
+      :linesDistance="150"
+      :moveSpeed="2"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="push"
+    ></vue-particles>
+    <div class="left-box"></div>
     <div class="login-box">
       <!-- 头像区域 -->
-      <div class="avatar-box">
-        <img src="../assets/logo.png" alt srcset />
-      </div>
+      <!-- <div class="avatar-box">
+        <img src="../assets/艾斯.jpg" />
+      </div>-->
       <!-- 登录表单区域 -->
       <el-form ref="loginFormRef" class="login-form" :rules="loginFormRules" :model="loginForm">
         <!-- 用户名 -->
         <el-form-item prop="username">
-          <el-input prefix-icon="iconfont icon-user" v-model="loginForm.username"></el-input>
+          <div class="login-label">用 户 名</div>
+          <el-input prefix-icon="iconfont icon-user" v-model="loginForm.username" class="inputArea"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
+          <div class="login-label">密 码</div>
           <el-input
             prefix-icon="iconfont icon-3702mima"
             v-model="loginForm.password"
             type="password"
+            class="inputArea"
           ></el-input>
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="login">登录</el-button>
-          <el-button type="info" @click="resetLoginForm">重置</el-button>
+          <div class="login-btn">
+            <el-button type="primary" @click="login" width="300" round>登 录</el-button>
+          </div>
+          <div class="reset-btn">
+            <el-button type="info" @click="resetLoginForm" round>重 置</el-button>
+          </div>
         </el-form-item>
       </el-form>
     </div>
@@ -41,15 +67,9 @@ export default {
       // 表单的验证规则对象
       loginFormRules: {
         // 验证用户名是否合法
-        username: [
-          { required: true, message: '请输入登录名称', trigger: 'blur' },
-          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
-        ],
+        username: [{ required: true, message: '请输入登录名称', trigger: 'blur' }, { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }],
         // 验证密码是否合法
-        password: [
-          { required: true, message: '请输入登录密码', trigger: 'blur' },
-          { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
-        ]
+        password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }, { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }]
       }
     }
   },
@@ -80,47 +100,88 @@ export default {
 </script>
 <style lang="less" scoped>
 .login-container {
-  background-color: #2b4b6b;
+  width: 100%;
   height: 100%;
-}
-.login-box {
-  background-color: white;
-  width: 450px;
-  height: 300px;
-  border-radius: 3px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  .avatar-box {
-    height: 130px;
-    width: 130px;
-    border: 1px solid #eee;
-    border-radius: 50%;
-    padding: 10px;
-    box-shadow: 0 0 10px #ddd;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #eee;
-    }
+  background-color: #ced3e9;
+  background-size: cover;
+  .active-bgd {
+    height: 100%;
   }
 }
-.login-form {
+.left-box {
   position: absolute;
+  left: 36%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 400px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px #919191;
+  background-image: url('../assets/onepiece2.jpg');
+  background-position-x: 60%;
+}
+.login-box {
+  background-color: #fcfcfc;
+  width: 320px;
+  height: 500px;
+  border-radius: 5px;
+  position: absolute;
+  left: 75%;
+  top: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  box-shadow: 5px 5px 20px #919191;
+  .login-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #566573;
+  }
+  // .avatar-box {
+  //   height: 90px;
+  //   width: 90px;
+  //   border: 1px solid #eee;
+  //   border-radius: 50%;
+  //   padding: 10px;
+  //   box-shadow: 0 0 10px #ddd;
+  //   position: absolute;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   background-color: #fff;
+  //   img {
+  //     width: 100%;
+  //     height: 100%;
+  //     border-radius: 50%;
+  //     background-color: #eee;
+  //   }
+  // }
+}
+.login-form {
+  margin-top: 20%;
   bottom: 0;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 30px;
   box-sizing: border-box;
 }
 .btns {
-  display: flex;
-  justify-content: flex-end;
+  // display: flex;
+  // justify-content: flex-end;
+}
+.login-btn {
+  margin-top: 50px;
+  button.el-button {
+    background-color: #4694d6;
+    border: none;
+  }
+}
+.reset-btn {
+  margin-top: 110px;
+}
+.el-button {
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
+  width: 250px;
+  font-size: 16px;
 }
 </style>

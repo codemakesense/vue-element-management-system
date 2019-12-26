@@ -15,6 +15,7 @@
           </el-input>
         </el-col>
       </el-row>
+      <!-- 列表区域 -->
       <el-table :data="orderList" border>
         <el-table-column type="index" label="#" width="50"></el-table-column>
         <el-table-column prop="order_number" label="订单编号"></el-table-column>
@@ -198,5 +199,8 @@ table.el-table__body {
 }
 .el-cascader {
   width: 100%;
+}
+.el-table {
+  margin-top: 15px;
 }
 </style>
