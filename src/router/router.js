@@ -24,6 +24,7 @@ const Order = () => import(/* webpackChunkName:"order" */ '../components/order/O
 // import Order from './components/order/Order.vue'
 const Report = () => import(/* webpackChunkName:"report" */ '../components/report/Report.vue')
 // import Report from './components/report/Report.vue'
+const Drag = () => import(/* webpackChunkName:"drag" */ '../components/practise/Drag.vue')
 
 Vue.use(VueRouter)
 
@@ -46,7 +47,8 @@ const router = new VueRouter({
         { path: '/goods', component: GoodList },
         { path: '/goods/add', component: GoodAdd },
         { path: '/orders', component: Order },
-        { path: '/reports', component: Report }
+        { path: '/reports', component: Report },
+        { path: '/drag', component: Drag }
       ]
     }
   ]

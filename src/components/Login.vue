@@ -137,24 +137,6 @@ export default {
     font-weight: bold;
     color: #566573;
   }
-  // .avatar-box {
-  //   height: 90px;
-  //   width: 90px;
-  //   border: 1px solid #eee;
-  //   border-radius: 50%;
-  //   padding: 10px;
-  //   box-shadow: 0 0 10px #ddd;
-  //   position: absolute;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  //   background-color: #fff;
-  //   img {
-  //     width: 100%;
-  //     height: 100%;
-  //     border-radius: 50%;
-  //     background-color: #eee;
-  //   }
-  // }
 }
 .login-form {
   margin-top: 20%;
@@ -162,10 +144,6 @@ export default {
   width: 100%;
   padding: 0 30px;
   box-sizing: border-box;
-}
-.btns {
-  // display: flex;
-  // justify-content: flex-end;
 }
 .login-btn {
   margin-top: 50px;

@@ -77,13 +77,20 @@ export default {
         '103': 'el-icon-lock',
         '101': 'el-icon-goods',
         '102': 'el-icon-tickets',
-        '145': 'el-icon-pie-chart'
+        '145': 'el-icon-pie-chart',
+        '99': 'el-icon-magic-stick'
       },
       // 默认不折叠菜单
       isCollapse: false,
       // 被激活的链接地址
       activePath: '',
-      collapseIcon: 'el-icon-s-fold'
+      collapseIcon: 'el-icon-s-fold',
+      // 手动添加的菜单项
+      otherMenuItem: {
+        authName: '功能练习',
+        id: 99,
+        children: [{ authName: '拖拽组件', id: 89, path: 'drag' }]
+      }
     }
   },
   created() {
@@ -102,6 +109,8 @@ export default {
       const { data: res } = await this.$http.get('menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.menulist = res.data
+      console.log(this.menulist)
+      this.menulist.push(this.otherMenuItem)
     },
     // 点击按钮，切换菜单的 折叠与展开
     toggleCollapse() {
