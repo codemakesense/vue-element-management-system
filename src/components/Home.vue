@@ -19,7 +19,7 @@
         <!-- 侧边栏菜单区域 -->
         <el-menu
           background-color="#324157"
-          text-color="#fff"
+          text-color="#D5D8DC"
           active-text-color="#20a0ff"
           :unique-opened="true"
           :collapse="isCollapse"
@@ -28,6 +28,12 @@
           :default-active="activePath"
         >
           <!-- 一级菜单 -->
+          <!-- 前端添加数据 -->
+          <el-menu-item @click="saveNavState('/welcome')" index="/welcome">
+            <i class="el-icon-house"></i>
+            <span>{{ otherMenuItem.welcome.authName }}</span>
+          </el-menu-item>
+          <!-- 后台拉取数据 -->
           <el-submenu
             :index="item.id + ''"
             v-for="item in menulist"
@@ -87,9 +93,21 @@ export default {
       collapseIcon: 'el-icon-s-fold',
       // 手动添加的菜单项
       otherMenuItem: {
-        authName: '功能练习',
-        id: 99,
-        children: [{ authName: '拖拽组件', id: 89, path: 'drag' }]
+        welcome: {
+          authName: '系统首页',
+          id: 98
+        },
+        practise: {
+          authName: '功能练习',
+          id: 99,
+          children: [
+            {
+              authName: '拖拽组件',
+              id: 89,
+              path: 'drag'
+            }
+          ]
+        }
       }
     }
   },
@@ -97,7 +115,7 @@ export default {
     // 页面创建的时候获取列表
     this.getMenuList()
     // 页面创建的时候获取被激活的子菜单的地址
-    this.activePath = window.sessionStorage.getItem('activePath')
+    this.getActivePath()
   },
   methods: {
     signOut() {
@@ -110,7 +128,7 @@ export default {
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.menulist = res.data
       console.log(this.menulist)
-      this.menulist.push(this.otherMenuItem)
+      this.menulist.push(this.otherMenuItem.practise)
     },
     // 点击按钮，切换菜单的 折叠与展开
     toggleCollapse() {
@@ -125,6 +143,15 @@ export default {
     saveNavState(activePath) {
       window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
+    },
+    // 获取默认激活的菜单
+    getActivePath() {
+      let pathInSession = window.sessionStorage.getItem('activePath')
+      if (pathInSession !== null) {
+        this.activePath = pathInSession
+      } else if (pathInSession === null) {
+        this.activePath = '/welcome'
+      }
     }
   }
 }
@@ -176,6 +203,6 @@ export default {
   // }
 }
 .el-main {
-  background-color: #eaedf1;
+  background-color: #f0f0f0;
 }
 </style>

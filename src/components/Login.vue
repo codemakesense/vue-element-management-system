@@ -92,6 +92,20 @@ export default {
         //  1.2 token 只应当在浏览器会话阶段生效，关闭浏览器后应该失效，因此不能保存在 loacalStorage 中
         // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
         window.sessionStorage.setItem('token', res.data.token)
+        // 1. 如果是第一次登录，就储存session "您是第一次登录"
+        // 2.1 如果不是第一次登录，就保存当前登录时间到 thisLoginTime
+        // 2.2 重新登录时，保存当前登录时间到 thisloginTime
+        let lastLoginTime = window.localStorage.getItem('lastLoginTime')
+        let thisLoginTime = window.localStorage.getItem('thisLoginTime')
+        // 上次登录时间为空，则为第一次登录
+        if (lastLoginTime === null) {
+          window.localStorage.setItem('lastLoginTime', '您是第一次登录')
+          window.localStorage.setItem('thisLoginTime', new Date())
+          // 否则为第二次登录，并覆盖登录时间
+        } else {
+          window.localStorage.setItem('lastLoginTime', thisLoginTime)
+          window.localStorage.setItem('thisLoginTime', new Date())
+        }
         this.$router.push('/home')
       })
     }
