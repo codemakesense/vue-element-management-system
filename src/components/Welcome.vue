@@ -421,12 +421,14 @@ export default {
     text-align: center;
   }
 }
+
 .todo-list {
   .todo-text {
     font-size: 14.5px;
     font-weight: bold;
     color: #34495e;
   }
+
   .todo-text-done {
     text-decoration: line-through;
     color: #999;

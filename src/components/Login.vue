@@ -1,60 +1,135 @@
 <template>
-  <div class="login-container">
-    <vue-particles
-      class="active-bgd"
-      color="#fff"
-      :particleOpacity="0.7"
-      :particlesNumber="60"
-      shapeType="circle"
-      :particleSize="4"
-      linesColor="#fff"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="2"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="push"
-    ></vue-particles>
-    <div class="left-box"></div>
-    <div class="login-box">
-      <!-- 头像区域 -->
-      <!-- <div class="avatar-box">
-        <img src="../assets/艾斯.jpg" />
-      </div>-->
-      <!-- 登录表单区域 -->
-      <el-form ref="loginFormRef" class="login-form" :rules="loginFormRules" :model="loginForm">
-        <!-- 用户名 -->
-        <el-form-item prop="username">
-          <div class="login-label">用 户 名</div>
-          <el-input prefix-icon="iconfont icon-user" v-model="loginForm.username" class="inputArea"></el-input>
-        </el-form-item>
-        <!-- 密码 -->
-        <el-form-item prop="password">
-          <div class="login-label">密 码</div>
-          <el-input
-            prefix-icon="iconfont icon-3702mima"
-            v-model="loginForm.password"
-            type="password"
-            class="inputArea"
-          ></el-input>
-        </el-form-item>
-        <!-- 按钮区域 -->
-        <el-form-item class="btns">
-          <div class="login-btn">
-            <el-button type="primary" @click="login" width="300" round>登 录</el-button>
+  <!-- 布局区域 -->
+  <el-container>
+    <!-- 头部区域 -->
+    <el-header>
+      <!-- 动态背景区域 -->
+      <vue-particles
+        class="active-bgd"
+        color="#3498DB"
+        :particleOpacity="0.7"
+        :particlesNumber="60"
+        shapeType="circle"
+        :particleSize="3"
+        linesColor="#3498DB"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="2"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+      ></vue-particles>
+    </el-header>
+    <!-- 中间内容区域 -->
+    <el-main>
+      <div class="login-container">
+        <!-- 左侧图片区域 -->
+        <div class="login-pic-1" v-if="showPicOrText===0">
+          <p class="pic-info">插图来自网络</p>
+        </div>
+        <div class="login-pic-2" v-else-if="showPicOrText===1">
+          <div class="login-pic-text">
+            <p class="login-pic-title">因为热爱，所以前行。</p>
+            <p>要使整个人生都过得舒适、愉快，</p>
+            <p>这是不可能的，</p>
+            <p>因为人类必须具备一种</p>
+            <p>能应付逆境的态度。</p>
+            <p>—— 卢梭</p>
+            <p class="pics-info">插图来自网络</p>
           </div>
-          <div class="reset-btn">
-            <el-button type="info" @click="resetLoginForm" round>重 置</el-button>
+          <div class="login-pic-img img-1" :style="{ backgroundImage: `url(${picsURL})` }"></div>
+        </div>
+        <div class="login-pic-2" v-else-if="showPicOrText===2">
+          <div class="login-pic-text">
+            <p class="login-pic-title">因为热爱，所以前行。</p>
+            <p>人生犹如一本书,</p>
+            <p>愚蠢者草草翻过,</p>
+            <p>聪明人细细阅读,</p>
+            <p>为何如此,</p>
+            <p>因为他们只能读它一次。</p>
+            <p>—— 保罗</p>
+            <p class="pics-info">插图来自网络</p>
           </div>
-        </el-form-item>
-      </el-form>
-    </div>
-  </div>
+          <div class="login-pic-img img-2" :style="{ backgroundImage: `url(${picsURL})` }"></div>
+        </div>
+        <div class="login-pic-2" v-else-if="showPicOrText===3">
+          <div class="login-pic-text">
+            <p class="login-pic-title">因为热爱，所以前行。</p>
+            <p>当所有想的说的</p>
+            <p>要的爱的</p>
+            <p>都挤在心脏</p>
+            <p>行李箱里装不下我</p>
+            <p>想去的远方</p>
+            <p class="pics-info">摘自《牧马城市》</p>
+            <p class="pics-info pics-info-a">
+              <a href="https://y.qq.com/n/yqq/singer/001BHDR33FZVZ0.html" target="_blank">听更多毛不易的音乐</a>
+            </p>
+          </div>
+          <div class="login-pic-img img-3" :style="{ backgroundImage: `url(${picsURL})` }"></div>
+        </div>
+        <div class="login-box">
+          <div class="login-box-label">Vue后台管理Demo</div>
+          <!-- 登录表单区域 -->
+          <el-form ref="loginFormRef" class="login-form" :rules="loginFormRules" :model="loginForm">
+            <!-- 用户名 -->
+            <el-form-item prop="username">
+              <div class="login-label">用 户 名</div>
+              <el-input
+                prefix-icon="iconfont icon-user"
+                v-model="loginForm.username"
+                class="inputArea"
+                placeholder="请输入用户名"
+              ></el-input>
+            </el-form-item>
+            <!-- 密码 -->
+            <el-form-item prop="password">
+              <div class="login-label">密 码</div>
+              <el-input
+                prefix-icon="iconfont icon-3702mima"
+                v-model="loginForm.password"
+                type="password"
+                class="inputArea"
+                placeholder="请输入密码"
+              ></el-input>
+            </el-form-item>
+            <!-- 按钮区域 -->
+            <el-form-item class="btns">
+              <div class="login-btn">
+                <el-button type="primary" @click="login" width="300">登 录</el-button>
+              </div>
+              <div class="reset-btn">
+                <el-button type="info" @click="resetLoginForm">重 置</el-button>
+              </div>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+    </el-main>
+    <!-- 底部区域 -->
+    <el-footer>
+      <div class="footer-text">
+        <a href="http://github.com/codemakesense" class="footer-link" target="_blank">My Github</a>
+        |
+        <a
+          href="http://codemakesense.github.io"
+          class="footer-link"
+          target="_blank"
+        >My Blog</a>
+        |
+        <a
+          href="http://github.com/codemakesense/vue-element-management-system"
+          class="footer-link"
+          target="_blank"
+        >项目 Github</a>
+        |
+        <span>Codeing by 吕亮（Simon）since 2019 Dec</span>
+      </div>
+    </el-footer>
+  </el-container>
 </template>
-
 <script>
 export default {
   data() {
@@ -70,8 +145,15 @@ export default {
         username: [{ required: true, message: '请输入登录名称', trigger: 'blur' }, { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }],
         // 验证密码是否合法
         password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }, { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }]
-      }
+      },
+      // 控制登录左侧区域显示整张图片还是文字
+      showPicOrText: 0,
+      // 控制登录左侧区域图片URL
+      picsURL: ''
     }
+  },
+  created() {
+    this.showWitchPic()
   },
   methods: {
     // 点击重置按钮，重置登录表单内容
@@ -108,67 +190,216 @@ export default {
         }
         this.$router.push('/home')
       })
+    },
+    // 控制随机展示登录左侧区域图片和文字
+    showWitchPic() {
+      var picNum = Math.floor(Math.random() * 4)
+      console.log(picNum)
+      if (picNum === 0) {
+        this.showPicOrText = 0
+        console.log('showPicOrText：' + this.showPicOrText)
+        return
+      } else if (picNum === 1) {
+        this.showPicOrText = 1
+        console.log('showPicOrText：' + this.showPicOrText)
+        this.picsURL = 'http://p.60du.cn/userfiles/sfiles/2019-11-30/157508523675984.png'
+      } else if (picNum === 2) {
+        this.showPicOrText = 2
+        this.picsURL = 'https://img.moegirl.org/common/4/40/%E4%B8%87%E8%8A%B1.png'
+      } else if (picNum === 3) {
+        this.showPicOrText = 3
+        this.picsURL = 'http://pic.90sjimg.com/design/00/09/72/14/58b3fbb340e7c.png!/fwfh/800x800/quality/90/unsharp/true/compress/true'
+      }
     }
   }
 }
 </script>
 <style lang="less" scoped>
-.login-container {
-  width: 100%;
-  height: 100%;
-  background-color: #ced3e9;
-  background-size: cover;
+@bgc: #eff4fa;
+
+.el-header {
+  background-color: @bgc;
+  height: 60px;
   .active-bgd {
     height: 100%;
   }
 }
-.left-box {
-  position: absolute;
-  left: 36%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 700px;
-  height: 400px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 5px 5px 20px #919191;
-  background-image: url('../assets/onepiece2.jpg');
-  background-position-x: 60%;
-}
-.login-box {
-  background-color: #fcfcfc;
-  width: 320px;
-  height: 500px;
-  border-radius: 5px;
-  position: absolute;
-  left: 75%;
-  top: 50%;
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  box-shadow: 5px 5px 20px #919191;
-  .login-label {
-    font-size: 20px;
-    font-weight: bold;
-    color: #566573;
+
+.el-main {
+  height: 520px;
+  .login-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .login-pic-1,
+    .login-pic-2 {
+      width: 570px;
+      height: 388px;
+      border-radius: 5px;
+      margin-left: 250px;
+    }
+
+    .login-pic-1 {
+      background-image: url(http://pic.51yuansu.com/pic3/cover/01/67/52/5958274aea269_610.jpg);
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-size: cover;
+
+      .pic-info {
+        font-size: 12px;
+        margin-top: 360px;
+        margin-left: 480px;
+      }
+    }
+
+    .login-pic-2 {
+      display: flex;
+      justify-content: space-between;
+
+      .login-pic-img {
+        width: 240px;
+        height: 388px;
+        background-repeat: no-repeat;
+      }
+
+      .img-1 {
+        background-position: 30% 80%;
+      }
+
+      .img-2 {
+        background-position: 35% 120%;
+        background-size: 350px;
+      }
+
+      .img-3 {
+        background-position: 15% 20%;
+        background-size: 600px;
+      }
+
+      .login-pic-text {
+        line-height: 10px;
+        font-size: 14px;
+
+        .login-pic-title {
+          font-size: 22px;
+          color: #6f95ca;
+        }
+
+        .pics-info {
+          font-size: 12px;
+          margin-top: 25px;
+        }
+
+        .pics-info-a {
+          margin-top: 0;
+
+          a {
+            color: grey;
+          }
+
+          a:link {
+            text-decoration-line: none;
+          }
+
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+
+        p {
+          font-family: 'lucida Grande', Verdana, 'Microsoft YaHei';
+        }
+      }
+    }
+
+    .login-box {
+      border: 1px solid #aebdcd;
+      width: 335px;
+      height: 388px;
+      border-radius: 5px;
+      margin-left: 50px;
+
+      div.el-form-item {
+        margin-bottom: 0;
+      }
+
+      .login-box-label {
+        background-color: #fcfcfc;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px 0;
+        color: #229954;
+        border-bottom: 1px solid #aebdcd;
+        height: 35px;
+        line-height: 35px;
+        border-radius: 5px;
+      }
+
+      .login-label {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #566573;
+      }
+
+      .login-form {
+        bottom: 0;
+        width: 100%;
+        padding: 0 30px;
+        box-sizing: border-box;
+      }
+
+      .el-button {
+        border: none;
+        width: 100%;
+        font-size: 18px;
+      }
+
+      .login-btn {
+        margin-top: 20px;
+
+        button.el-button {
+          background-color: #5a98de;
+        }
+
+        button.el-button:hover {
+          background-color: #65a4ce;
+        }
+      }
+
+      .reset-btn {
+        margin-top: 75px;
+      }
+    }
   }
 }
-.login-form {
-  margin-top: 20%;
-  bottom: 0;
-  width: 100%;
-  padding: 0 30px;
-  box-sizing: border-box;
-}
-.login-btn {
-  margin-top: 50px;
-  button.el-button {
-    background-color: #4694d6;
-    border: none;
+
+.el-footer {
+  height: 35px !important;
+  background-color: @bgc;
+
+  .footer-text {
+    text-align: center;
+    line-height: 35px;
+    font-size: 13px;
+
+    a {
+      color: #1d77bf;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    span {
+      color: grey;
+    }
   }
 }
-.reset-btn {
-  margin-top: 110px;
-}
+
 .el-button {
   position: absolute;
   transform: translate(-50%);
