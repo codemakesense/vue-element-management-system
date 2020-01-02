@@ -325,7 +325,7 @@ export default {
       }
 
       .login-box-label {
-        background-color: #fcfcfc;
+        background-color: #eff4fa;
         font-size: 20px;
         font-weight: bold;
         text-align: center;

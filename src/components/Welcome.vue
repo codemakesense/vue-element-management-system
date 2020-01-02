@@ -7,9 +7,7 @@
           <el-card class="mgb20" style="height:260px">
             <div slot="header" class="clearfix">
               <div class="user-info">
-                <div class="user-info-img">
-                  <img src="../assets/艾斯.jpg" alt srcset />
-                </div>
+                <div class="user-info-img"></div>
                 <div class="user-info-label">
                   <div>Simon</div>
                   <div class="user-info-label-github">
@@ -326,11 +324,13 @@ export default {
     align-items: center;
 
     .user-info-img {
-      img {
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
-      }
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      background-image: url(http://img3.52toys.com/a8c9106044686e987259af7d79ff2e36);
+      background-position: 20% 80%;
+      background-size: 160%;
+      background-repeat: no-repeat;
     }
 
     .user-info-label {

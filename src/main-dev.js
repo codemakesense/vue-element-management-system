@@ -53,6 +53,8 @@ Vue.component('tree-table', TreeTable)
 
 // 将富文本编辑器注册为全局可用的组件
 Vue.use(VueQuillEditor)
+
+// 将背景动图注册为全局可用的组件
 Vue.use(VuePraticles)
 
 // 定义日期过滤器
