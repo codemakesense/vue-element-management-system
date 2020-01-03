@@ -2,11 +2,7 @@ import Vue from 'vue'
 import {
   Button, Form, FormItem, Input, Message, Container, Header, Footer, Aside, Main, Menu,
   Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn,
-<<<<<<< HEAD
-  Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, TabPane, Tabs, Step, Steps, CheckboxGroup, Checkbox, Upload, Timeline, TimelineItem, Progress, Divider
-=======
-  Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, TabPane, Tabs, Step, Steps, CheckboxGroup, Checkbox, Upload, Timeline, TimelineItem, Link
->>>>>>> practise
+  Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, TabPane, Tabs, Step, Steps, CheckboxGroup, Checkbox, Upload, Timeline, TimelineItem, Progress, Divider, Link
 } from 'element-ui'
 
 Vue.use(Button)
