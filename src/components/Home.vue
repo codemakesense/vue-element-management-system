@@ -2,15 +2,36 @@
   <el-container class="home-container">
     <!-- 头部区域 -->
     <el-header>
-      <div>
+      <div class="header-left">
         <div class="toggle-button" @click="toggleCollapse">
           <i :class="collapseIcon"></i>
         </div>
-        <div>后台管理系统</div>
-        <img src="../assets/logo.png" alt="图标" />
+        <div class="title-text">后台管理系统</div>
       </div>
-      <!-- 退出登录 -->
-      <el-button type="info" size="medium" @click="signOut">登出</el-button>
+      <!-- 右边用户头像区域 -->
+      <div class="header-right">
+        <!-- 用户头像区域 -->
+        <div class="user-info-avatar"></div>
+        <!-- 下拉菜单区域 -->
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link" style="color:white">
+            admin
+            <i class="el-icon-caret-bottom"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <el-link
+                href="https://github.com/codemakesense/vue-element-management-system.git"
+                target="_blank"
+                :underline="false"
+              >项目仓库</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <span @click="signOut">退出登录</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </el-header>
     <!-- 页面主体区域 -->
     <el-container>
@@ -30,8 +51,8 @@
           <!-- 一级菜单 -->
           <!-- 前端添加数据 -->
           <el-menu-item @click="saveNavState('/welcome')" index="/welcome">
-            <i class="el-icon-house"></i>
-            <span>{{ otherMenuItem.welcome.authName }}</span>
+            <i class="iconfont iconhome" style="font-size: 26px"></i>
+            <span class="menu-item-text">{{ otherMenuItem.welcome.authName }}</span>
           </el-menu-item>
           <!-- 后台拉取数据 -->
           <el-submenu
@@ -87,7 +108,7 @@ export default {
         '99': 'el-icon-magic-stick'
       },
       // 默认不折叠菜单
-      isCollapse: false,
+      isCollapse: true,
       // 被激活的链接地址
       activePath: '',
       collapseIcon: 'el-icon-s-fold',
@@ -159,6 +180,7 @@ export default {
 <style lang="less" scoped>
 .home-container {
   height: 100%;
+  min-width: 1000px;
 }
 .el-header {
   background-color: #242f42;
@@ -168,14 +190,16 @@ export default {
   color: white;
   align-items: center;
   padding: 0;
-  div {
+
+  .header-left {
     display: flex;
     align-items: center;
-    img {
-      width: 22px;
-      height: 22px;
-      margin-left: 12px;
+
+    .title-text {
+      font-size: 18px;
+      padding-bottom: 2px;
     }
+
     .toggle-button {
       width: 64px;
       height: 60px;
@@ -183,25 +207,55 @@ export default {
       align-items: center;
       justify-content: center;
     }
+
     .toggle-button:hover {
       background-color: #454e5e;
     }
   }
+
+  .header-right {
+    margin-right: 20px;
+    font-size: 15px;
+    display: flex;
+    width: 150px;
+    height: 60px;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .user-info-avatar {
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      background-image: url(http://img3.52toys.com/a8c9106044686e987259af7d79ff2e36);
+      background-position: 20% 80%;
+      background-size: 55px;
+      background-repeat: no-repeat;
+    }
+
+    .el-dropdown {
+      cursor: pointer;
+    }
+  }
+
   .el-button {
     margin-right: 15px;
     border: none;
   }
 }
+
 .el-aside {
   background-color: #324157;
+
   // 左侧菜单右边框优化对齐
   .el-menu {
     border-right: none;
   }
-  // .sub-menu {
-  //   width: 200px;
-  // }
+
+  .menu-item-text {
+    margin-left: 4px;
+  }
 }
+
 .el-main {
   background-color: #f0f0f0;
 }

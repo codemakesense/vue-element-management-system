@@ -4,10 +4,10 @@
       <el-col :span="8">
         <div class="user-content">
           <!-- 用户登录信息区域 -->
-          <el-card class="mgb20" style="height:260px">
+          <el-card class="mgb20" style="height:260px" shadow="hover">
             <div slot="header" class="clearfix">
               <div class="user-info">
-                <div class="user-info-img"></div>
+                <div class="user-info-avatar"></div>
                 <div class="user-info-label">
                   <div>Simon</div>
                   <div class="user-info-label-github">
@@ -41,7 +41,7 @@
         </div>
         <!-- 个人技能区域 -->
         <el-row>
-          <el-card style="height:260px">
+          <el-card style="height:260px" shadow="hover">
             <div slot="header" class="clearfix">
               <span>语言情况</span>
             </div>Vue
@@ -57,7 +57,7 @@
         <el-row :gutter="20">
           <!-- PV 访问量 / 订单数量 / 商品数量 -->
           <el-col :span="8" v-for="(item, i) in keyData" :key="i">
-            <el-card :body-style="{padding: '0px'}">
+            <el-card :body-style="{padding: '0px'}" shadow="hover">
               <div class="data-count">
                 <i :class="item.icon"></i>
                 <div class="data-text">
@@ -72,7 +72,7 @@
         <el-row>
           <!-- 表单验证区域 -->
           <el-form>
-            <el-card style="height:420px">
+            <el-card style="height:420px" shadow="hover" 退出登录>
               <div slot="header" class="clearfix list-header">
                 <!-- 列表头部区域 -->
                 <span>待办事项</span>
@@ -180,27 +180,27 @@ export default {
       // 初始的代办列表
       todoList: [
         {
-          title: '今天要吃100个汉堡包！',
+          title: '今天要修复100个BUG！',
           inputVisible: false,
           isDone: false
         },
         {
-          title: '今天要吃101个汉堡包！',
+          title: '10点前完成订单数据分析。',
           inputVisible: false,
           isDone: true
         },
         {
-          title: '今天要吃102个汉堡包！',
+          title: '14点前提交用户画像报告。',
           inputVisible: false,
           isDone: false
         },
         {
-          title: '今天要吃103个汉堡包！',
+          title: '下班前完成图表功能开发。',
           inputVisible: false,
           isDone: true
         },
         {
-          title: '今天要吃104个汉堡包！',
+          title: '周四前提交本周工作总结。',
           inputVisible: false,
           isDone: true
         }
@@ -323,13 +323,13 @@ export default {
     display: flex;
     align-items: center;
 
-    .user-info-img {
+    .user-info-avatar {
       border-radius: 50%;
-      width: 100px;
-      height: 100px;
+      min-width: 100px;
+      min-height: 100px;
       background-image: url(http://img3.52toys.com/a8c9106044686e987259af7d79ff2e36);
       background-position: 20% 80%;
-      background-size: 160%;
+      background-size: 160px;
       background-repeat: no-repeat;
     }
 
