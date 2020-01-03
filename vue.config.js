@@ -11,7 +11,8 @@ module.exports = {
         lodash: '_',
         echarts: 'echarts',
         nprogress: 'NProgress',
-        'vue-quill-editor': 'VueQuillEditor'
+        'vue-quill-editor': 'VueQuillEditor',
+        draggable: 'draggable'
       })
       // 生产模式下设置一个 tag 开关，决定是否在 index.html 中加载cdn资源
       config.plugin('html').tap(args => {
