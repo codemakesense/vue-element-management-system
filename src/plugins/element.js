@@ -46,12 +46,9 @@ Vue.use(Checkbox)
 Vue.use(Upload)
 Vue.use(Timeline)
 Vue.use(TimelineItem)
-<<<<<<< HEAD
 Vue.use(Progress)
 Vue.use(Divider)
 Vue.use(Footer)
-=======
 Vue.use(Link)
->>>>>>> practise
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
