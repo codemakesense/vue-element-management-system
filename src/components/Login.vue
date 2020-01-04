@@ -3,9 +3,13 @@
   <el-container>
     <!-- 头部区域 -->
     <el-header>
+      <!-- 左侧网页标题区域 -->
+      <div class="header-left">
+        <p>Vue后台管理Demo</p>
+      </div>
       <!-- 动态背景区域 -->
       <vue-particles
-        class="active-bgd"
+        class="header-active-bgd"
         color="#3498DB"
         :particleOpacity="0.7"
         :particlesNumber="60"
@@ -71,7 +75,7 @@
           <div class="login-pic-img img-3" :style="{ backgroundImage: `url(${picsURL})` }"></div>
         </div>
         <div class="login-box">
-          <div class="login-box-label">Vue后台管理Demo</div>
+          <div class="login-box-label">用户登录入口</div>
           <!-- 登录表单区域 -->
           <el-form ref="loginFormRef" class="login-form" :rules="loginFormRules" :model="loginForm">
             <!-- 用户名 -->
@@ -222,9 +226,21 @@ export default {
 }
 
 .el-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: @bgc;
   height: 60px;
-  .active-bgd {
+
+  .header-left {
+    text-align: center;
+    color: #5a98de;
+    font-weight: bold;
+    font-size: 22px;
+    width: 260px;
+  }
+
+  .header-active-bgd {
     height: 100%;
   }
 }
@@ -336,7 +352,7 @@ export default {
         font-weight: bold;
         text-align: center;
         padding: 10px 0;
-        color: #229954;
+        color: #566573;
         border-bottom: 1px solid #aebdcd;
         height: 35px;
         line-height: 35px;
