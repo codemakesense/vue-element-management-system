@@ -217,6 +217,10 @@ export default {
 <style lang="less" scoped>
 @bgc: #eff4fa;
 
+.el-container {
+  min-width: 1000px;
+}
+
 .el-header {
   background-color: @bgc;
   height: 60px;
@@ -227,8 +231,11 @@ export default {
 
 .el-main {
   height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .login-container {
-    height: 100%;
     display: flex;
     align-items: center;
 
@@ -237,7 +244,6 @@ export default {
       width: 570px;
       height: 388px;
       border-radius: 5px;
-      margin-left: 250px;
     }
 
     .login-pic-1 {
@@ -325,7 +331,7 @@ export default {
       }
 
       .login-box-label {
-        background-color: #eff4fa;
+        background-color: #f9fbfe;
         font-size: 20px;
         font-weight: bold;
         text-align: center;
@@ -334,7 +340,7 @@ export default {
         border-bottom: 1px solid #aebdcd;
         height: 35px;
         line-height: 35px;
-        border-radius: 5px;
+        border-radius: 5px 5px 0 0;
       }
 
       .login-label {
