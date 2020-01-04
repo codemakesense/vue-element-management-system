@@ -43,11 +43,16 @@ div.el-step__title {
   font-size: 15px;
 }
 
-/* 
-div.el-tabs {
-  margin-top: 30px;
-} */
-
 .ql-editor {
   min-height: 300px;
+}
+
+.move-enter-active,
+.move-leave-active {
+  transition: opacity .5s;
+}
+
+.move-enter,
+.move-leave {
+  opacity: 0;
 }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import {
   Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu,
   Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn,
-  Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, TabPane, Tabs, Step, Steps, CheckboxGroup, Checkbox, Upload, Timeline, TimelineItem, Progress, Divider
+  Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, TabPane, Tabs, Step, Steps, CheckboxGroup, Checkbox, Upload, Timeline, TimelineItem, Progress, Divider, Dropdown, DropdownMenu, DropdownItem
 } from 'element-ui'
 
 Vue.use(Button)
@@ -44,5 +44,8 @@ Vue.use(Timeline)
 Vue.use(TimelineItem)
 Vue.use(Progress)
 Vue.use(Divider)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
