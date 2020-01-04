@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <el-row :gutter="20">
+  <div class="home-container">
+    <!-- 首页中部用户信息相关区域 -->
+    <el-row :gutter="20" class="mgb20">
+      <!-- 用户区域 -->
       <el-col :span="8">
+        <!-- 用户登录信息区域 -->
         <div class="user-content">
-          <!-- 用户登录信息区域 -->
           <el-card class="mgb20" style="height:260px" shadow="hover">
             <div slot="header" class="clearfix">
               <div class="user-info">
@@ -24,23 +26,23 @@
               </div>
             </div>
             <div class="login-info">
-              <div
-                v-if="loginInfo.time==='您是第一次登录'"
-                class="login-info-time"
-              >您上次登录的时间：{{ loginTime }}</div>
+              <div v-if="loginInfo.time==='您是第一次登录'" class="login-info-time">
+                <span class="login-text">上次登录的时间:</span>
+                {{ loginTime }}
+              </div>
               <div v-else class="login-info-time">
-                您上次登录的时间：
+                <span class="login-text">上次登录的时间:</span>
                 <span>{{ loginInfo.time | dateFormat }}</span>
               </div>
               <div>
-                您上次登录的地点：
-                <span>星辰大海！</span>
+                <span class="login-text">上次登录的地点:</span>
+                <span>中国广东省</span>
               </div>
             </div>
           </el-card>
         </div>
         <!-- 个人技能区域 -->
-        <el-row>
+        <div>
           <el-card style="height:260px" shadow="hover">
             <div slot="header" class="clearfix">
               <span>语言情况</span>
@@ -50,15 +52,15 @@
             <el-progress :percentage="30"></el-progress>HTML
             <el-progress :percentage="10" color="#f56c6c"></el-progress>
           </el-card>
-        </el-row>
+        </div>
       </el-col>
-      <!-- 数据信息区域 -->
+      <!-- 商品数据信息区域 -->
       <el-col :span="16">
-        <el-row :gutter="20">
+        <el-row :gutter="20" class="mgb20">
           <!-- PV 访问量 / 订单数量 / 商品数量 -->
           <el-col :span="8" v-for="(item, i) in keyData" :key="i">
             <el-card :body-style="{padding: '0px'}" shadow="hover">
-              <div class="data-count">
+              <div class="data-box">
                 <i :class="item.icon"></i>
                 <div class="data-text">
                   <div class="data--text-num">{{ item.count }}</div>
@@ -69,7 +71,7 @@
           </el-col>
         </el-row>
         <!-- 待办列表区域 -->
-        <el-row>
+        <div class="todo-box">
           <!-- 表单验证区域 -->
           <el-form>
             <el-card style="height:420px" shadow="hover" 退出登录>
@@ -144,12 +146,28 @@
               </el-table>
             </el-card>
           </el-form>
-        </el-row>
+        </div>
+      </el-col>
+    </el-row>
+    <!-- 下方 echarts 图表区域 -->
+    <el-row :gutter="20" class="chart-container">
+      <el-col :span="12">
+        <el-card>
+          <div class="bar-chart charts" id="main-bar"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card>
+          <div class="line-chart charts" id="main-line"></div>
+        </el-card>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
+// 引入echarts插件
+import echarts from 'echarts'
+
 export default {
   data() {
     return {
@@ -218,12 +236,107 @@ export default {
       },
       addInputValue: '',
       // 动态保存获得焦点的 edit input 的 ref
-      editInputRef: ''
+      editInputRef: '',
+      // 柱状图配置和数据对象
+      barOption: {
+        title: {
+          text: '服装日销量'
+        },
+        tooltip: {},
+        legend: {},
+        dataset: {
+          source: [
+            ['product', '风衣', '高跟鞋', '包包'],
+            ['1月1日', '40', '30', '50'],
+            ['1月2日', '30', '20', '40'],
+            ['1月3日', '20', '50', '10'],
+            ['1月4日', '34', '52', '17'],
+            ['1月5日', '35', '28', '15']
+          ]
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {},
+        grid: { bottom: '10%' },
+        series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+      },
+      // 折线图配置和数据对象
+      lineOption: {
+        title: {
+          text: '服装总销量趋势'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['风衣', '高跟鞋', '包包', '手表']
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: '风衣',
+            type: 'line',
+            stack: '总量',
+            data: [120, 132, 250, 134, 90, 250, 210]
+          },
+          {
+            name: '高跟鞋',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 291, 234, 290, 360, 310]
+          },
+          {
+            name: '包包',
+            type: 'line',
+            stack: '总量',
+            data: [150, 232, 201, 154, 190, 370, 210]
+          },
+          {
+            name: '手表',
+            type: 'line',
+            stack: '总量',
+            data: [320, 332, 301, 334, 390, 380, 320]
+          }
+        ]
+      }
     }
   },
   created() {
+    // 获取登录信息
     this.getLoginInfo()
+    // 获取待办信息
     this.getTodoList()
+  },
+  mounted() {
+    // 初始化echarts实例
+    const barChart = echarts.init(document.getElementById('main-bar'), 'light')
+    const lineChart = echarts.init(document.getElementById('main-line'), 'light')
+    barChart.setOption(this.barOption)
+    lineChart.setOption(this.lineOption)
   },
   methods: {
     getLoginInfo() {
@@ -301,18 +414,11 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.el-row {
-  margin-bottom: 20px;
-}
-
 .el-input {
   width: 200px;
 }
 
-.addInput {
-  float: right;
-}
-
+// 通用外底边距20px
 .mgb20 {
   margin-bottom: 20px;
 }
@@ -358,16 +464,21 @@ export default {
     }
   }
   .login-info {
-    .login-info-time {
-      margin-bottom: 20px;
-    }
-    span {
+    font-size: 15px;
+    color: grey;
+
+    .login-text {
+      margin-right: 30px;
       font-weight: bold;
+    }
+
+    .login-info-time {
+      margin-bottom: 15px;
     }
   }
 }
 
-.data-count {
+.data-box {
   display: flex;
   align-items: center;
   height: 100px;
@@ -413,6 +524,12 @@ export default {
   }
 }
 
+.todo-box {
+  .addInput {
+    float: right;
+  }
+}
+
 .progress {
   display: flex;
   justify-content: space-evenly;
@@ -432,6 +549,19 @@ export default {
   .todo-text-done {
     text-decoration: line-through;
     color: #999;
+  }
+}
+
+.chart-container {
+  .el-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .charts {
+      width: 550px;
+      height: 280px;
+    }
   }
 }
 </style>

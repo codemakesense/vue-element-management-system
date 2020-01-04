@@ -16,12 +16,13 @@
 <script>
 // 1. 导入 echarts 插件
 import echarts from 'echarts'
+// 2. 导入 lodash 插件
 import _ from 'lodash'
 
 export default {
   data() {
     return {
-      // 需要合并的数据
+      // 需要用lodash合并的数据
       options: {
         title: {
           text: '用户来源'
@@ -58,7 +59,7 @@ export default {
   // 此时，页面上的DOM元素已经被渲染完毕
   async mounted() {
     // 3. 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'))
+    var myChart = echarts.init(document.getElementById('main'), 'light')
     const { data: res } = await this.$http.get('reports/type/1')
     if (res.meta.status !== 200) {
       return this.$message.error('获取报表数据失败！')
