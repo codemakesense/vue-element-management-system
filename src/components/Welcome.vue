@@ -42,10 +42,10 @@
           </el-card>
         </div>
         <!-- 个人技能区域 -->
-        <div>
+        <div class="language-progress">
           <el-card style="height:260px" shadow="hover">
             <div slot="header" class="clearfix">
-              <span>语言情况</span>
+              <span class="language-progress-title">语言情况</span>
             </div>Vue
             <el-progress :percentage="70" color="#42b983"></el-progress>JavaScript
             <el-progress :percentage="50" color="#f1e05a"></el-progress>CSS
@@ -77,12 +77,12 @@
             <el-card style="height:420px" shadow="hover" 退出登录>
               <div slot="header" class="clearfix list-header">
                 <!-- 列表头部区域 -->
-                <span>待办事项</span>
+                <span class="todo-box-title">待办事项</span>
                 <!-- 添加待办事项区域 -->
                 <el-input
                   v-if="addInputVisible"
                   @keyup.enter.native="$event.target.blur"
-                  @blur="handleAddInputConfirm"
+                  @blur="handleAddConfirm"
                   v-model="addInputValue"
                   size="small"
                   class="addInput"
@@ -110,7 +110,7 @@
                       v-if="scope.row.inputVisible"
                       v-model="scope.row.title"
                       @keyup.enter.native="$event.target.blur"
-                      @blur="handleInputConfirm(scope.row)"
+                      @blur="handleEditConfirm(scope.row,scope.$index)"
                       size="small"
                       ref="editInputRef"
                     ></el-input>
@@ -370,7 +370,7 @@ export default {
       })
     },
     // 监听添加待办 input 回车获失去焦点事件，添加待办事项
-    handleAddInputConfirm() {
+    handleAddConfirm() {
       // 如果输入框为空则不添加到localStorage中
       if (this.addInputValue.trim().length === 0) {
         this.addInputValue = ''
@@ -396,9 +396,14 @@ export default {
       })
     },
     // 确认提交编辑待办列表
-    handleInputConfirm(row) {
+    handleEditConfirm(row, index) {
+      let oldList = JSON.parse(window.localStorage.getItem('todoList'))
+      let oldItem = oldList[index].title
       if (row.title.trim().length === 0) {
-        return alert('请输入待办事项')
+        return this.$message.error('请输入待办事项！')
+      } else if (row.title === oldItem) {
+        row.inputVisible = false
+        return
       }
       row.inputVisible = false
       let str = JSON.stringify(this.localList)
@@ -463,6 +468,7 @@ export default {
       }
     }
   }
+
   .login-info {
     font-size: 15px;
     color: grey;
@@ -475,6 +481,12 @@ export default {
     .login-info-time {
       margin-bottom: 15px;
     }
+  }
+}
+
+.language-progress {
+  .language-progress-title {
+    font-weight: bold;
   }
 }
 
@@ -525,30 +537,24 @@ export default {
 }
 
 .todo-box {
+  .todo-box-title {
+    font-weight: bold;
+  }
+
   .addInput {
     float: right;
   }
-}
 
-.progress {
-  display: flex;
-  justify-content: space-evenly;
+  .todo-list {
+    .todo-text {
+      font-size: 14.5px;
+      color: #34495e;
+    }
 
-  .progress-item {
-    text-align: center;
-  }
-}
-
-.todo-list {
-  .todo-text {
-    font-size: 14.5px;
-    font-weight: bold;
-    color: #34495e;
-  }
-
-  .todo-text-done {
-    text-decoration: line-through;
-    color: #999;
+    .todo-text-done {
+      text-decoration: line-through;
+      color: #999;
+    }
   }
 }
 
