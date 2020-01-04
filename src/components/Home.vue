@@ -36,58 +36,60 @@
     <!-- 页面主体区域 -->
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside :width="isCollapse ? '64px' : '200px'">
-        <!-- 侧边栏菜单区域 -->
-        <el-menu
-          background-color="#324157"
-          text-color="#D5D8DC"
-          active-text-color="#20a0ff"
-          :unique-opened="true"
-          :collapse="isCollapse"
-          :collapse-transition="false"
-          :router="true"
-          :default-active="activePath"
-        >
-          <!-- 一级菜单 -->
-          <!-- 前端添加数据 -->
-          <el-menu-item @click="saveNavState('/welcome')" index="/welcome">
-            <i class="iconfont iconhome" style="font-size: 26px"></i>
-            <span class="menu-item-text">{{ otherMenuItem.welcome.authName }}</span>
-          </el-menu-item>
-          <!-- 后台拉取数据 -->
-          <el-submenu
-            :index="item.id + ''"
-            v-for="item in menulist"
-            :key="item.id"
-            class="sub-menu"
+      <transition name="move" mode="out-in">
+        <el-aside :width="isCollapse ? '64px' : '200px'">
+          <!-- 侧边栏菜单区域 -->
+          <el-menu
+            background-color="#324157"
+            text-color="#D5D8DC"
+            active-text-color="#20a0ff"
+            :unique-opened="true"
+            :collapse="isCollapse"
+            :collapse-transition="false"
+            :router="true"
+            :default-active="activePath"
           >
-            <!-- 一级菜单的模板区域 -->
-            <template slot="title">
-              <!-- 图标 -->
-              <i :class="iconObj[item.id]"></i>
-              <!-- 文本 -->
-              <span>{{ item.authName }}</span>
-            </template>
-            <!-- 二级菜单 -->
-            <el-menu-item
-              :index="'/' + subItem.path"
-              v-for="subItem in item.children"
-              :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
+            <!-- 一级菜单 -->
+            <!-- 前端添加菜单项数据 -->
+            <el-menu-item @click="saveNavState('/welcome')" index="/welcome">
+              <i class="iconfont iconhome2" style="font-size: 18px"></i>
+              <span class="menu-item-text">{{ otherMenuItem.welcome.authName }}</span>
+            </el-menu-item>
+            <!-- 后台拉取数据 -->
+            <el-submenu
+              :index="item.id + ''"
+              v-for="item in menulist"
+              :key="item.id"
+              class="sub-menu"
             >
+              <!-- 一级菜单的模板区域 -->
               <template slot="title">
                 <!-- 图标 -->
-                <i class="el-icon-menu"></i>
+                <i :class="iconObj[item.id]"></i>
                 <!-- 文本 -->
-                <span>{{ subItem.authName }}</span>
+                <span>{{ item.authName }}</span>
               </template>
-            </el-menu-item>
-          </el-submenu>
-        </el-menu>
-      </el-aside>
+              <!-- 二级菜单 -->
+              <el-menu-item
+                :index="'/' + subItem.path"
+                v-for="subItem in item.children"
+                :key="subItem.id"
+                @click="saveNavState('/' + subItem.path)"
+              >
+                <template slot="title">
+                  <!-- 图标 -->
+                  <i class="el-icon-menu"></i>
+                  <!-- 文本 -->
+                  <span>{{ subItem.authName }}</span>
+                </template>
+              </el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-aside>
+      </transition>
       <!-- 右侧主体区域 -->
       <el-main>
-        <!-- Welcome 组件路由占位符 -->
+        <!-- Welcome首页 组件路由占位符 -->
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -252,7 +254,11 @@ export default {
   }
 
   .menu-item-text {
-    margin-left: 4px;
+    margin-left: 8px;
+  }
+
+  .iconhome2 {
+    margin-left: 2px;
   }
 }
 
