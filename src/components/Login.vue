@@ -237,7 +237,7 @@ export default {
     color: #5a98de;
     font-weight: bold;
     font-size: 22px;
-    width: 260px;
+    min-width: 260px;
   }
 
   .header-active-bgd {
