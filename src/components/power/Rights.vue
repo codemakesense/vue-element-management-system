@@ -10,7 +10,7 @@
     <el-card>
       <!-- 权限列表区 -->
       <el-table :data="currentPageList" border stripe>
-        <el-table-column type="index" label="#" width="50"></el-table-column>
+        <el-table-column type="index" label="序列" width="50"></el-table-column>
         <el-table-column label="权限名称" prop="authName"></el-table-column>
         <el-table-column label="路径" prop="path"></el-table-column>
         <el-table-column label="权限等级" prop="level">

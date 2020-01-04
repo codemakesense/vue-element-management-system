@@ -17,7 +17,7 @@
       </el-row>
       <!-- 列表区域 -->
       <el-table :data="orderList" border>
-        <el-table-column type="index" label="#" width="50"></el-table-column>
+        <el-table-column type="index" label="序列" width="50"></el-table-column>
         <el-table-column prop="order_number" label="订单编号"></el-table-column>
         <el-table-column prop="order_price" label="订单价格" width="100"></el-table-column>
         <el-table-column prop="pay_status" label="是否付款" width="100">
