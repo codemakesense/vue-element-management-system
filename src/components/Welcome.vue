@@ -240,7 +240,10 @@ export default {
       // 柱状图配置和数据对象
       barOption: {
         title: {
-          text: '服装日销量'
+          text: '服装日销量',
+          textStyle: {
+            fontSize: '18'
+          }
         },
         tooltip: {},
         legend: {},
@@ -269,7 +272,10 @@ export default {
       // 折线图配置和数据对象
       lineOption: {
         title: {
-          text: '服装总销量趋势'
+          text: '服装总销量趋势',
+          textStyle: {
+            fontSize: '18'
+          }
         },
         tooltip: {
           trigger: 'axis'
@@ -278,8 +284,6 @@ export default {
           data: ['风衣', '高跟鞋', '包包', '手表']
         },
         grid: {
-          left: '3%',
-          right: '4%',
           bottom: '3%',
           containLabel: true
         },
@@ -566,7 +570,7 @@ export default {
 
     .charts {
       width: 550px;
-      height: 280px;
+      height: 250px;
     }
   }
 }
