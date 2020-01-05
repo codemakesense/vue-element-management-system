@@ -21,18 +21,18 @@
       </el-row>
       <!-- 用户列表区域 -->
       <el-table :data="userlist" border stripe>
-        <el-table-column type="index" label="序列"></el-table-column>
-        <el-table-column label="姓名" prop="username"></el-table-column>
+        <el-table-column type="index" label="序列" width="50"></el-table-column>
+        <el-table-column label="姓名" prop="username" width="100"></el-table-column>
         <el-table-column label="邮箱" prop="email"></el-table-column>
-        <el-table-column label="电话" prop="mobile"></el-table-column>
-        <el-table-column label="角色" prop="role_name"></el-table-column>
-        <el-table-column label="状态">
+        <el-table-column label="电话" prop="mobile" width="120"></el-table-column>
+        <el-table-column label="角色" prop="role_name" width="120"></el-table-column>
+        <el-table-column label="状态" width="85">
           <!-- 通过Element ui 模板定义传回父组件的 .row属性获得当前表格的数据 -->
           <template v-slot="scope">
             <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"></el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="200">
           <template v-slot="scope">
             <!-- 修改按钮 -->
             <el-button
@@ -315,9 +315,7 @@ export default {
     // 监听 switch 开关状态的改变
     async userStateChanged(userinfo) {
       // console.log(userinfo)
-      const { data: res } = await this.$http.put(
-        `users/${userinfo.id}/state/${userinfo.mg_state}`
-      )
+      const { data: res } = await this.$http.put(`users/${userinfo.id}/state/${userinfo.mg_state}`)
       if (res.meta.status !== 200) {
         userinfo.mg_state = !userinfo.mg_state
         return this.$message.error('更新用户状态失败')
@@ -373,13 +371,10 @@ export default {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
         // 发起修改用户的http请求
-        const { data: res } = await this.$http.put(
-          'users/' + this.editForm.id,
-          {
-            email: this.editForm.email,
-            mobile: this.editForm.mobile
-          }
-        )
+        const { data: res } = await this.$http.put('users/' + this.editForm.id, {
+          email: this.editForm.email,
+          mobile: this.editForm.mobile
+        })
         if (res.meta.status !== 200) {
           return this.$message.error('修改用户数据失败！')
         }
@@ -433,12 +428,9 @@ export default {
       if (!this.selectedRoleId) {
         return this.$message.error('请选择要分配的角色！')
       }
-      const { data: res } = await this.$http.put(
-        `users/${this.userInfo.id}/role`,
-        {
-          rid: this.selectedRoleId
-        }
-      )
+      const { data: res } = await this.$http.put(`users/${this.userInfo.id}/role`, {
+        rid: this.selectedRoleId
+      })
       if (res.meta.status !== 200) {
         return this.$message.error('分配角色失败！')
       }
