@@ -1,7 +1,7 @@
 ### vue-element-management-system
-### 基于Vue框架和Element ui框架开发的后台管理系统
+### 基于Vue框架和Element ui框架开发的后台管理系统Demo
 ##
-####****[Demo预览地址](http://codemakesense.cn)****
+####****[Demo预览地址](http://118.126.94.66/)****
 
 ##
 
@@ -27,4 +27,7 @@
 ##
 
 #### 完成了数据统计功能开发
+##
+
+#### 完成了拖拽功能开发
 ##
